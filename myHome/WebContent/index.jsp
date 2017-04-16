@@ -14,6 +14,6 @@
 <body>
 	Hello Word!
 	<br>
-	<a href="<%=basePath%>/cpu/query.do">点击这里，获取!</a>
+	<a href="<%=basePath%>/cpu/query.do">点击这里，获取更新数据!</a>
 </body>
 </html>
