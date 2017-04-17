@@ -1,26 +1,21 @@
 package com.wx.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.wx.dao.CpuDao;
-import com.wx.pojo.Cpu;
+import net.sf.json.JSONObject;
 
 /**
  * @author 作者 :陈曦
- * @date 创建时间:2017年4月14日 下午2:00:18
+ * @date 创建时间:2017年4月17日 上午9:56:21
  * @version 1.0
  * @parameter
  * @since
  * @return
  */
-@Service
-public class CpuService {
-	@Autowired
-	private CpuDao cpuDao;
+public interface CpuService {
 
-	public Cpu queryCpu() {
-		Cpu pc_cpu = cpuDao.queryCpu();
-		return pc_cpu;
-	}
+	/**
+	 * 查询cpu列表
+	 * 
+	 * @return
+	 */
+	public JSONObject queryCpu();
 }

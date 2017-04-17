@@ -10,10 +10,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="<%=basePath %>jquery/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	Hello Word!
 	<br>
-	<a href="<%=basePath%>/cpu/query.do">点击这里，获取更新数据!</a>
+	<a href="<%=basePath%>jsp/pc_home.jsp">点击这里，获取更新数据!</a>
 </body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		window.location="<%=basePath%>jsp/pc_home.jsp";
+	});
+		
+</script>
 </html>
