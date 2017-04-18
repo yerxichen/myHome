@@ -1,5 +1,7 @@
 package com.wx.service;
 
+import java.util.Map;
+
 import net.sf.json.JSONObject;
 
 /**
@@ -22,5 +24,12 @@ public interface CpuService {
 	 * @return
 	 */
 	public JSONObject queryCpu(int page, int size);
+
+	/**
+	 * 查询cpu品牌，接口类型，支持内存，核心类型
+	 *
+	 * @return
+	 */
+	public Map<String, Object> queryCpuInfo();
 
 }

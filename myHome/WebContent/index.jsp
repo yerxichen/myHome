@@ -19,7 +19,7 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function(){
-		window.location="<%=basePath%>jsp/pc_home.jsp";
+		window.location="<%=basePath%>jsp/welcome.jsp";
 	});
 		
 </script>

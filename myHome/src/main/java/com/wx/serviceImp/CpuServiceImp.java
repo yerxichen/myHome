@@ -1,5 +1,6 @@
 package com.wx.serviceImp;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,20 @@ public class CpuServiceImp implements CpuService {
 		JSONObject obj = new JSONObject();
 		obj.put("result", arr);
 		return obj;
+	}
+
+	@Override
+	public Map<String, Object> queryCpuInfo() {
+		Map<String, Object> objMap = new HashMap<String, Object>();
+		List<Map<String, Object>> cpuPp = cpuDao.queryCpuPp();
+		List<Map<String, Object>> cpuHxlx = cpuDao.queryCpuHxlx();
+		List<Map<String, Object>> cpuJklx = cpuDao.queryCpuJklx();
+		List<Map<String, Object>> cpuZcnc = cpuDao.queryCpuZcnc();
+		objMap.put("cpuPp", cpuPp);
+		objMap.put("cpuHxlx", cpuHxlx);
+		objMap.put("cpuJklx", cpuJklx);
+		objMap.put("cpuZcnc", cpuZcnc);
+		return objMap;
 	}
 
 }

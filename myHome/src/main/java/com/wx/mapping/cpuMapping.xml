@@ -7,4 +7,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryCpu" resultType="java.util.Map"  parameterType="int">
 		select xxzjbh,title from pc_cpu limit #{param1},#{param2}
 	</select>
+	<!-- 查询cpu品牌 -->
+	<select id="queryCpuPp" resultType="java.util.Map">
+		select xpcf from pc_cpu WHERE xpcf is NOT null group by xpcf
+	</select>
+	<!-- 查询核心类型 -->
+	<select id="queryCpuHxlx" resultType="java.util.Map">
+		select hxlx from pc_cpu WHERE hxlx is NOT null group by hxlx
+	</select>
+	<!-- 查询接口类型 -->
+	<select id="queryCpuJklx" resultType="java.util.Map">
+		select jklx from pc_cpu WHERE jklx is NOT null group by jklx
+	</select>
+	<!-- 查询支持内存 -->
+	<select id="queryCpuZcnc" resultType="java.util.Map">
+		select zcncpl from pc_cpu WHERE zcncpl is NOT null group by zcncpl
+	</select>
 </mapper>

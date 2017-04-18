@@ -1,5 +1,7 @@
 package com.wx.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,5 +36,14 @@ public class CpuController {
 		page *= size;
 		JSONObject rtObj = cpuService.queryCpu(page, size);
 		return rtObj;
+	}
+
+	@RequestMapping("/queryPp.do")
+	@ResponseBody
+	public Map<String, Object> queryPp(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("123");
+		Map<String, Object> rtMap = cpuService.queryCpuInfo();
+		System.out.println(rtMap.toString());
+		return rtMap;
 	}
 }

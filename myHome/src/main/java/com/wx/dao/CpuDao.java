@@ -19,4 +19,32 @@ public interface CpuDao {
 	 * @return
 	 */
 	public List<Map<String, Object>> queryCpu(int page, int size);
+
+	/**
+	 * cpu品牌
+	 * 
+	 * @return
+	 */
+	public List<Map<String, Object>> queryCpuPp();
+
+	/**
+	 * cpu核心类型
+	 * 
+	 * @return
+	 */
+	public List<Map<String, Object>> queryCpuHxlx();
+
+	/**
+	 * cpu接口类型
+	 * 
+	 * @return
+	 */
+	public List<Map<String, Object>> queryCpuJklx();
+
+	/**
+	 * cpu支持内存
+	 * 
+	 * @return
+	 */
+	public List<Map<String, Object>> queryCpuZcnc();
 }
