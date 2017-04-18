@@ -1,6 +1,7 @@
 package com.wx.dao;
 
-import com.wx.pojo.Cpu;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author 作者 :陈曦
@@ -17,5 +18,5 @@ public interface CpuDao {
 	 * 
 	 * @return
 	 */
-	public Cpu queryCpu();
+	public List<Map<String, Object>> queryCpu(int page, int size);
 }

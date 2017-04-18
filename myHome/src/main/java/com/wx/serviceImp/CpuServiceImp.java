@@ -1,12 +1,15 @@
 package com.wx.serviceImp;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wx.dao.CpuDao;
-import com.wx.pojo.Cpu;
 import com.wx.service.CpuService;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
@@ -23,9 +26,12 @@ public class CpuServiceImp implements CpuService {
 	private CpuDao cpuDao;
 
 	@Override
-	public JSONObject queryCpu() {
-		Cpu pc_cpu = cpuDao.queryCpu();
-		return null;
+	public JSONObject queryCpu(int page, int size) {
+		List<Map<String, Object>> pc_cpu = cpuDao.queryCpu(page, size);
+		JSONArray arr = JSONArray.fromObject(pc_cpu);
+		JSONObject obj = new JSONObject();
+		obj.put("result", arr);
+		return obj;
 	}
 
 }

@@ -3,7 +3,8 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wx.dao.CpuDao">
-	<select id="queryCpu" resultType="com.wx.pojo.Cpu" >
-		select * from pc_cpu limit 1
+	<!-- 分页查询cpu列表 -->
+	<select id="queryCpu" resultType="java.util.Map"  parameterType="int">
+		select xxzjbh,title from pc_cpu limit #{param1},#{param2}
 	</select>
 </mapper>

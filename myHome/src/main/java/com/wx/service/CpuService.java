@@ -15,7 +15,12 @@ public interface CpuService {
 	/**
 	 * 查询cpu列表
 	 * 
+	 * @param page
+	 *            当前页
+	 * @param size
+	 *            每页显示数
 	 * @return
 	 */
-	public JSONObject queryCpu();
+	public JSONObject queryCpu(int page, int size);
+
 }
