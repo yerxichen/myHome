@@ -23,4 +23,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryCpuZcnc" resultType="java.util.Map">
 		select zcncpl from pc_cpu WHERE zcncpl is NOT null group by zcncpl
 	</select>
+	<!-- 根据条件查询cpu -->
+	<select id="searchCpu" resultType="java.util.Map" parameterType="java.lang.String">
+		SELECT title,price,cpdw,xpcf,hxsl,zp,localPic,xxzjbh,gzgl,jklx FROM pc_cpu WHERE gzgl is not null and price is not null and jklx is not null
+		<if test='param1!=""'>
+			and title like CONCAT(CONCAT('%', #{param1}),'%') 
+		</if>
+		<if test='param2!="我不清楚"'>
+			and xpcf =#{param2}
+		</if>
+		<if test='param3!="我不清楚"'>
+			and jklx =#{param3}
+		</if>
+		<if test='param4!="我不清楚"'>
+			and hxlx =#{param4}
+		</if>
+		<if test='param5!="我不清楚"'>
+			and zcncpl =#{param5}
+		</if>
+	</select>
 </mapper>

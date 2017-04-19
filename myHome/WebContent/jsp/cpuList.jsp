@@ -9,6 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css"
 	href="<%=basePath%>bootstrap-3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -19,28 +20,60 @@
 	src="<%=basePath%>bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>dropload-gh-pages/dist/dropload.min.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>jquery-session/jquery.session.js"></script>
 <title>CPU</title>
+<style type="text/css">
+ 	.top{margin-top: 10px}
+</style>
 </head>
 <body>
-	<div class="page-header">
-		<h1>
-			CPU<small>中央处理器</small>
-		</h1>
-	</div>
+	<h2 class="bg-primary">
+		CPU
+	</h2>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-10">
+			<div class="col-sm-10 top">
 				<div class="input-group">
 					<div class="input-group-addon">
 						<span class="glyphicon glyphicon-search"></span>
 					</div>
-					<input type="text" class="form-control" id="exampleInputAmount"
+					<input type="text" class="form-control" id="cpu_name"
 						placeholder="请输入CPU名字">
-					<div class="input-group-addon" onclick="queryCpuName()">开始查找</div>
+					<div class="input-group-addon" onclick="queryCpu()">开始查找</div>
 				</div>
 			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-2 top">
 				<button class="btn btn-block btn-primary" onclick="shaixuan()">条件筛选</button>
+			</div>
+		</div>
+		<div style="height: 400px;overflow-y: auto;overflow-x: hidden;">
+			<div class="row" id="cpu_list">
+				<div class="col-sm-12">
+					<div class="col-sm-4">
+						<img alt="" src="http://192.168.1.107:80/pc_cpu/AMD Ryzen 5 1600X_13.jpg" style="height:100px">
+					</div>
+					<div class="col-sm-4">
+						<div class="col-sm-12">
+							<h4><span class="label label-primary">AMD Ryzen 5 1600X</span>&nbsp;<span class="label label-success">AMD</span>&nbsp;<span class="label label-info">六核</span>&nbsp;<span class="label label-warning">3.6GHz</span></h4>
+						</div>
+						<div class="col-sm-12">
+							<h4><span class="label label-default">95W</span>&nbsp;<span class="label label-danger">￥1999</span></h4>
+							<div class="radio">
+						 	<label>
+						    	<input type="radio" name="cpu_radio" id="cpu_radio" value="xxzjbh" >
+						    	<strong>就选它了</strong>
+						  	</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-sm-12 text-right top">
+				<button class="btn btn-success btn-block" onclick="go_zb()"><h5>点击选择主板<span class="glyphicon glyphicon-chevron-right"></span></h5></button>
 			</div>
 		</div>
 	</div>
@@ -101,7 +134,6 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 					</button>
-					<button type="button" class="btn btn-primary">提交更改</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -121,7 +153,7 @@
 		//品牌
 		$.ajax({
 			type:"GET",
-			url:"<%=basePath%>cpu/queryPp.do",
+			url:"<%=basePath%>cpu/queryInit.do",
 			data : {},
 			dataType : "json",
 			success : function(data) {
@@ -145,8 +177,71 @@
 			error : function() {
 				alert("ajaxError!");
 			}
-		});
-		//核心类型
+		});	
+	}
+	//查找cpu
+	function queryCpu(){
+		var name=$("#cpu_name").val();
+		var hxlx=$("#cpu_hxlx").val();
+		var pp=$("#cpu_pp").val();
+		var jklx=$("#cpu_jklx").val();
+		var zcnc=$("#cpu_zcnc").val();
+		$.ajax({
+			type:"Post",
+			url:"<%=basePath%>cpu/searchCpu.do",
+			data : {
+				name:name,
+				hxlx:hxlx,
+				pp:pp,
+				jklx:jklx,
+				zcnc:zcnc
+			},
+			dataType : "json",
+			success : function(data) {
+				var result=data.result;
+				//alert(JSON.stringify(result));
+				if(result.length>0){
+					var list=$("#cpu_list");
+					var res="";
+					for(var i=0;i<result.length;i++){
+						res+='<div class="col-sm-12">';
+						res+='<div class="col-sm-4">';
+						res+='<img alt="" src="http://192.168.1.107:80/pc_cpu/'+result[i].localPic+'" style="height:100px">';
+						res+='</div>';
+						res+='<div class="col-sm-4">';
+						res+='<div class="col-sm-12">';
+						res+='<h4><span class="label label-primary">'+result[i].title+'</span>&nbsp;<span class="label label-success">'+result[i].xpcf+'</span>&nbsp;<span class="label label-info">'+result[i].hxsl+'</span>&nbsp;<span class="label label-warning">'+result[i].zp+'</span></h4>';
+						res+='</div>';
+						res+='<div class="col-sm-12">';
+						res+='<h4><span class="label label-default">'+result[i].gzgl+'</span>&nbsp;<span class="label label-danger">'+result[i].price+'</span></h4>';
+						res+='<div class="radio">';
+						res+='<label>';
+						res+='<input type="radio" name="cpu_radio" value="'+result[i].xxzjbh+'&'+result[i].jklx+'&'+result[i].price+'&'+result[i].gzgl+'" >';
+						res+='<strong>就选它了</strong>';
+						res+='</div>';
+						res+='</div>';
+						res+='</div>';
+						res+='</div>';
+						res+='<hr/>';
+					}
+					list.html(res);
+				}
+				
+			},
+			error : function() {
+				alert("查询cpu列表失败!");
+			}
+		});	
+	}
+	//进入选择主板页面
+	function go_zb(){
+		var str=$("input[type='radio']:checked").val();
+		var arr=str.split("&");
+		$.session("cpu_xxzjbh",arr[0]);
+		$.session("cpu_jklx",arr[1]);
+		$.session("cpu_price",arr[2]);
+		$.session("cpu_gzgl",arr[0]);
+		window.location="<%=basePath%>jsp/zbList.jsp";
 	}
 </script>
 </html>

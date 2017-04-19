@@ -38,12 +38,25 @@ public class CpuController {
 		return rtObj;
 	}
 
-	@RequestMapping("/queryPp.do")
+	@RequestMapping("/queryInit.do")
 	@ResponseBody
 	public Map<String, Object> queryPp(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("123");
+		// System.out.println("123");
 		Map<String, Object> rtMap = cpuService.queryCpuInfo();
-		System.out.println(rtMap.toString());
+		// System.out.println(rtMap.toString());
+		return rtMap;
+	}
+
+	@RequestMapping("/searchCpu.do")
+	@ResponseBody
+	public Map<String, Object> searchCpu(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String name = request.getParameter("name");
+		String pp = request.getParameter("pp");
+		String jklx = request.getParameter("jklx");
+		String hxlx = request.getParameter("hxlx");
+		String zcnc = request.getParameter("zcnc");
+		System.out.println(name + pp + jklx + hxlx + zcnc);
+		Map<String, Object> rtMap = cpuService.searchCpu(name, pp, jklx, hxlx, zcnc);
 		return rtMap;
 	}
 }

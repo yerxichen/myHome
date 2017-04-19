@@ -49,4 +49,13 @@ public class CpuServiceImp implements CpuService {
 		return objMap;
 	}
 
+	@Override
+	public Map<String, Object> searchCpu(String name, String pp, String jklx, String hxlx, String zcnc) {
+		Map<String, Object> objMap = new HashMap<String, Object>();
+		List<Map<String, Object>> SearchCpuRes = cpuDao.searchCpu(name, pp, jklx, hxlx, zcnc);
+		System.out.println(SearchCpuRes.toString());
+		objMap.put("result", SearchCpuRes);
+		return objMap;
+	}
+
 }

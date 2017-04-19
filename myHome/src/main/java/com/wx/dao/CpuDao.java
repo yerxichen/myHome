@@ -47,4 +47,12 @@ public interface CpuDao {
 	 * @return
 	 */
 	public List<Map<String, Object>> queryCpuZcnc();
+
+	/**
+	 * 按条件查询cpu
+	 * 
+	 * @return
+	 */
+	public List<Map<String, Object>> searchCpu(String name, String pp, String jklx, String hxlx, String zcnc);
+
 }

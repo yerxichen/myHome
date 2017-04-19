@@ -32,4 +32,10 @@ public interface CpuService {
 	 */
 	public Map<String, Object> queryCpuInfo();
 
+	/**
+	 * 按条件查询cpu
+	 * 
+	 * @return
+	 */
+	public Map<String, Object> searchCpu(String name, String pp, String jklx, String hxlx, String zcnc);
 }
