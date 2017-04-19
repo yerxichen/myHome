@@ -38,9 +38,9 @@
 					<div class="input-group-addon">
 						<span class="glyphicon glyphicon-search"></span>
 					</div>
-					<input type="text" class="form-control" id="cpu_name"
+					<input type="text" class="form-control" id="query_name"
 						placeholder="请输入CPU名字">
-					<div class="input-group-addon" onclick="queryCpu()">开始查找</div>
+					<div class="input-group-addon" onclick="query()">开始查找</div>
 				</div>
 			</div>
 			<div class="col-sm-2 top">
@@ -48,7 +48,7 @@
 			</div>
 		</div>
 		<div style="height: 400px;overflow-y: auto;overflow-x: hidden;">
-			<div class="row" id="cpu_list">
+			<div class="row" id="pageList">
 				<div class="col-sm-12">
 					<div class="col-sm-4">
 						<img alt="" src="http://192.168.1.107:80/pc_cpu/AMD Ryzen 5 1600X_13.jpg" style="height:100px">
@@ -68,17 +68,17 @@
 						</div>
 					</div>
 				</div>
-				<hr>
+				<hr/>
 			</div>
 		</div>
 		<div class="row ">
 			<div class="col-sm-12 text-right top">
-				<button class="btn btn-success btn-block" onclick="go_zb()"><h5>点击选择主板<span class="glyphicon glyphicon-chevron-right"></span></h5></button>
+				<button class="btn btn-success btn-block" onclick="go()"><h5>点击选择主板<span class="glyphicon glyphicon-chevron-right"></span></h5></button>
 			</div>
 		</div>
 	</div>
 	<!-- 模态框（Modal） -->
-	<div class="modal fade" id="cpuModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -143,7 +143,7 @@
 </body>
 <script type="text/javascript">
 	function shaixuan() {
-		$("#cpuModal").modal('show');
+		$("#myModal").modal('show');
 	}
 	$(function(){
 		init();
@@ -180,8 +180,8 @@
 		});	
 	}
 	//查找cpu
-	function queryCpu(){
-		var name=$("#cpu_name").val();
+	function query(){
+		var name=$("#query_name").val();
 		var hxlx=$("#cpu_hxlx").val();
 		var pp=$("#cpu_pp").val();
 		var jklx=$("#cpu_jklx").val();
@@ -201,7 +201,7 @@
 				var result=data.result;
 				//alert(JSON.stringify(result));
 				if(result.length>0){
-					var list=$("#cpu_list");
+					var list=$("#pageList");
 					var res="";
 					for(var i=0;i<result.length;i++){
 						res+='<div class="col-sm-12">';
@@ -225,8 +225,7 @@
 						res+='<hr/>';
 					}
 					list.html(res);
-				}
-				
+				}			
 			},
 			error : function() {
 				alert("查询cpu列表失败!");
@@ -234,13 +233,13 @@
 		});	
 	}
 	//进入选择主板页面
-	function go_zb(){
+	function go(){
 		var str=$("input[type='radio']:checked").val();
 		var arr=str.split("&");
-		$.session("cpu_xxzjbh",arr[0]);
-		$.session("cpu_jklx",arr[1]);
-		$.session("cpu_price",arr[2]);
-		$.session("cpu_gzgl",arr[0]);
+		$.session.set("cpu_xxzjbh",arr[0]);
+		$.session.set("cpu_jklx",arr[1]);
+		$.session.set("cpu_price",arr[2]);
+		$.session.set("cpu_gzgl",arr[4]);
 		window.location="<%=basePath%>jsp/zbList.jsp";
 	}
 </script>

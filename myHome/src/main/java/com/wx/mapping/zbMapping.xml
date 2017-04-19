@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wx.dao.ZbDao">
+
+	<!-- 查询主板结构 -->
+	<select id="queryZbZbjg" resultType="java.util.Map" parameterType="java.lang.String">
+		SELECT zbjg FROM pc_zb WHERE cpucc=#{param1} AND zbjg IS NOT NULL GROUP BY zbjg 
+	</select>
+	<!-- 查询主板芯片 -->
+	<select id="queryZbZbxp" resultType="java.util.Map" parameterType="java.lang.String">
+		SELECT zbjg FROM pc_zb WHERE cpucc=#{param1} AND zbjg IS NOT NULL GROUP BY zbjg 
+	</select>
+
+</mapper>
