@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap-3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap_my.css">
+<script type="text/javascript" src="jq/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="bootstrap-validator-master/dist/validator.min.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-default ">
+		<div class="container">
+			<h2>
+				世纪桥软件<small>Century Bridge Software</small>
+			</h2>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row ">
+			<div class="col-md-4 col-md-offset-4">
+
+				<div class="panel panel-primary">
+					<div class="panel-heading ">
+						<h3 class="panel-title">登录</h3>
+					</div>
+					<div class="panel-body">
+						<form class="form" data-toggle="validator" action="./">
+							<div class="form-group add_margin_top">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<span class=" glyphicon glyphicon-user"></span>
+									</div>
+									<input type="text" class="form-control" placeholder="用户名"
+										required data-required-error="必填项">
+
+								</div>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<span class=" glyphicon glyphicon-lock"></span>
+									</div>
+									<input type="password" class="form-control" placeholder="密码">
+								</div>
+							</div>
+							<div class="checkbox pull-left">
+								<label> <input type="checkbox"> 请记住我
+								</label>
+							</div>
+
+							<div class="pull-right">
+								<button type="submit" class="btn btn-warning">登录</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+
+/*给容器增加上间距*/
+.add_margin_top{
+	margin-top: 20px;
+}
+/*清除容器的左右间距*/
+.clear_magrin_left_and_right{
+	margin-left: 0px;
+	margin-right: 0px;
+}
