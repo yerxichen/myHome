@@ -20,6 +20,21 @@
 	<shiro:hasRole name="user">
 		<h5>拥有user权限就能看到我</h5>
 	</shiro:hasRole>
+	<shiro:hasRole name="guest">
+		<h5>拥有guest权限就能看到我</h5>
+	</shiro:hasRole>
 	
+	<shiro:hasPermission name="read">
+		<h5>我能查询</h5>
+	</shiro:hasPermission>
+	<shiro:hasPermission name="delete">
+		<h5>我能删除</h5>
+	</shiro:hasPermission>
+	<shiro:hasPermission name="update">
+		<h5>我能修改</h5>
+	</shiro:hasPermission>
+	<shiro:hasPermission name="write">
+		<h5>我能增加</h5>
+	</shiro:hasPermission>
 </body>
 </html>

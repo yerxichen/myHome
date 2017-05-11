@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yer.dao.TestDao">
+	<!-- 分页查询cpu列表 -->
+	<select id="queryCpu" resultType="java.util.Map"  parameterType="int">
+		select xxzjbh,title from pc_cpu limit #{param1},#{param2}
+	</select>
+	<!-- 查询cpu品牌 -->
+	<select id="queryCpuPp" resultType="java.util.Map">
+		select xpcf from pc_cpu WHERE xpcf is NOT null group by xpcf
+	</select>
+	<!-- 查询核心类型 -->
+	<select id="queryCpuHxlx" resultType="java.util.Map">
+		select hxlx from pc_cpu WHERE hxlx is NOT null group by hxlx
+	</select>
+	<!-- 查询接口类型 -->
+	<select id="queryCpuJklx" resultType="java.util.Map">
+		select jklx from pc_cpu WHERE jklx is NOT null group by jklx
+	</select>
+	<!-- 查询支持内存 -->
+	<select id="queryCpuZcnc" resultType="java.util.Map">
+		select zcncpl from pc_cpu WHERE zcncpl is NOT null group by zcncpl
+	</select>
+	<!-- 根据条件查询cpu -->
+	<select id="searchCpu" resultType="java.util.Map" parameterType="java.lang.String">
+		SELECT title,price,cpdw,xpcf,hxsl,zp,localPic,xxzjbh,gzgl,jklx FROM pc_cpu WHERE gzgl is not null and price is not null and jklx is not null
+		<if test='param1!=""'>
+			and title like CONCAT(CONCAT('%', #{param1}),'%') 
+		</if>
+		<if test='param2!="我不清楚"'>
+			and xpcf =#{param2}
+		</if>
+		<if test='param3!="我不清楚"'>
+			and jklx =#{param3}
+		</if>
+		<if test='param4!="我不清楚"'>
+			and hxlx =#{param4}
+		</if>
+		<if test='param5!="我不清楚"'>
+			and zcncpl =#{param5}
+		</if>
+	</select>
+</mapper>
